@@ -6,7 +6,6 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
 """  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import time
-import typing
 import testing_helper
 
 
@@ -496,13 +495,13 @@ def print_result_of_test(expected, actual):
 
     print_failure_message()
 
-    # if isinstance(expected, list) or isinstance(expected, tuple):
-    #     explanation = (
-    #             '  For at least one of the above, its Expected value\n' +
-    #             '  does not equal its Actual value.'
-    #             'Note: the printed\n' +
-    #             '  values are the actual values ROUNDED to 1 decimal place.')
-    #     print_failure_message(explanation)
+    if isinstance(expected, list) or isinstance(expected, tuple):
+        explanation = (
+                '  For at least one of the above, its Expected value\n' +
+                '  does not equal its Actual value.')
+                # '  Note: the printed\n' +
+                # '  values are the actual values ROUNDED to 1 decimal place.')
+        print_failure_message(explanation)
 
     return False
 
@@ -510,8 +509,7 @@ def print_result_of_test(expected, actual):
 def are_equal(a, b):
     # We will treat two numbers as being "equal" if they are
     # the same when each is rounded to 12 decimal places.
-    if isinstance(a, typing.SupportsRound) \
-            and isinstance(b, typing.SupportsRound):
+    if isinstance(a, float) and isinstance(b, float):
         return round(a, 12) == round(b, 12)
 
     # For lists and tuples, their items have to be equal for the
